@@ -1,7 +1,7 @@
 name: Deployment
 
 on:
-  pull_request:
+  push:
     branches:
       - dev
       - mod
@@ -9,7 +9,6 @@ on:
 
 jobs:
     deploy:
-        if: github.event.pull_request.merged == true 
         environment: ${{ github.ref_name }}
         runs-on: ubuntu-latest
         steps:
