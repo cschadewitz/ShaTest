@@ -21,7 +21,7 @@ jobs:
                 echo "github.sha"
                 echo ${{ github.sha }}
                 echo "github.event.push.head_commit.id"
-                echo ${{ github.event.push.head_commit.id }}
+                echo ${{ github.event.head_commit.id }}
     deploy:
         environment: ${{ github.ref_name }}
         runs-on: ubuntu-latest
