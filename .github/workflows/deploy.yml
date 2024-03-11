@@ -23,7 +23,7 @@ jobs:
                 echo "github.event.push.head_commit.id"
                 echo ${{ github.event.head_commit.id }}
                 echo "github.event.commits"
-                last_two_sha=$(echo '${{ toJson(github.event.commits) }}' | jq -r '.[-2:] | .[].id')
+                last_two_sha=$(echo '${{ toJson(github.event.commits) }}' | jq -r '.[-2].id')
                 echo "$last_two_sha"
     deploy:
         environment: ${{ github.ref_name }}
