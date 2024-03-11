@@ -25,6 +25,8 @@ jobs:
                 echo "github.event.commits"
                 last_two_sha=$(echo '${{ toJson(github.event.commits) }}' | jq -r '.[-2].id')
                 echo "$last_two_sha"
+                echo "github.event.pull_request.head.sha"
+                echo ${{ github.event.pull_request.head.sha }}
     deploy:
         environment: ${{ github.ref_name }}
         runs-on: ubuntu-latest
