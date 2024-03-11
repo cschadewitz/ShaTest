@@ -3,12 +3,28 @@ name: Deployment
 on:
   push:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
     branches:
       - prod
     
 
 jobs:
+    prework:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print environment
+              shell: bash
+              run: echo ${{ github.ref_name }} ${{ github.event_name }}
+            - name: Print SHA
+              shell: bash
+              run: | 
+                echo "github.sha"
+                echo ${{ github.sha }}
+                echo "github.event.push.head_commit.id"
+                echo ${{ github.event.head_commit.id }}
+                echo "github.event.commits"
+                last_two_sha=$(echo '${{ toJson(github.event.commits) }}' | jq -r '.[-2].id')
+                echo "$last_two_sha"
     deploy:
         environment: ${{ github.ref_name }}
         runs-on: ubuntu-latest
