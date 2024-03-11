@@ -22,6 +22,8 @@ jobs:
                 echo ${{ github.sha }}
                 echo "github.event.push.head_commit.id"
                 echo ${{ github.event.head_commit.id }}
+                echo "github.event.commits"
+                echo "${{ toJson(github.event.commits) }}"
     deploy:
         environment: ${{ github.ref_name }}
         runs-on: ubuntu-latest
